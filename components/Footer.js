@@ -1,1 +1,7 @@
-export default function Footer(){return(<div>Footer</div>);}
+export default function Footer() {
+  return (
+    <footer className="bg-gray-800 text-white p-4 text-center">
+      © 2025 Pi Rewards Hub
+    </footer>
+  );
+}
