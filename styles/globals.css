@@ -1,9 +1,6 @@
 body {
-  background: #0f1724;
-  color: white;
+  background: #0f1724; /* لون داكن */
+  color: white;        /* نص أبيض */
   margin: 0;
   font-family: Inter, sans-serif;
 }
-input, button {
-  font-family: inherit;
-  
