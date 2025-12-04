@@ -1,1 +1,0 @@
-export default function TL(){return(<div>List</div>);}
