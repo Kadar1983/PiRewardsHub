@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { addTransaction } from "../api/transactions";
 
@@ -32,7 +33,7 @@ export default function Withdraw() {
         className="border p-2 mb-2 text-black"
       />
 
-      <button onClick={withdraw} className="bg-green-500 text-white px-4 py-2">
+      <button onClick={withdraw} className="bg-green-500 text-white px-4 py-2 rounded">
         سحب
       </button>
     </div>
