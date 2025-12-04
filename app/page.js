@@ -4,19 +4,26 @@ import { useRouter } from "next/navigation";
 import TransactionList from "../components/TransactionList";
 
 export default function Page() {
-  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
     const stored = localStorage.getItem("user");
     if (!stored) {
-      router.push("/login"); // إعادة توجيه لصفحة تسجيل الدخول
+      router.replace("/login"); // إعادة التوجيه فورًا
     } else {
-      setUser(JSON.parse(stored));
+      setLoading(false);
     }
   }, []);
 
-  if (!user) return <p>جاري التحويل لتسجيل الدخول...</p>;
+  if (loading)
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        جاري التحويل لتسجيل الدخول...
+      </div>
+    );
+
+  const user = JSON.parse(localStorage.getItem("user"));
 
   return (
     <div>
