@@ -3,20 +3,18 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
-  const [piID, setPiID] = useState("");
+  const [name, setName] = useState("");
   const router = useRouter();
 
   const login = () => {
-    if (!piID) return alert("أدخل PI ID");
-    localStorage.setItem("user", JSON.stringify({ name: piID, balance: 0, id: piID }));
+    localStorage.setItem("user", JSON.stringify({ id: 1, name, balance: 100 }));
     router.replace("/");
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-3xl mb-6">تسجيل الدخول</h1>
-      <input type="text" placeholder="PI ID" value={piID} onChange={(e)=>setPiID(e.target.value)} className="border p-2 mb-2 text-black"/>
-      <button onClick={login} className="bg-blue-500 text-white px-4 py-2 rounded">دخول</button>
+    <div className="min-h-screen flex flex-col items-center justify-center">
+      <input className="p-2 text-black" placeholder="اسم المستخدم" onChange={e => setName(e.target.value)} />
+      <button className="mt-4 p-2 bg-purple-600 rounded" onClick={login}>تسجيل الدخول</button>
     </div>
   );
 }
