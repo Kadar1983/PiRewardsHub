@@ -1,3 +1,13 @@
+import Navbar from '../../components/Navbar';
+
 export default function Privacy() {
-  return <div><h1 className="text-xl font-bold mb-2">Privacy Policy</h1><p>We do not store personal data.</p></div>;
+  return (
+    <div>
+      <Navbar />
+      <div className="min-h-screen p-4">
+        <h1 className="text-xl font-bold mb-2">سياسة الخصوصية</h1>
+        <p>نحن لا نقوم بتخزين أي بيانات شخصية.</p>
+      </div>
+    </div>
+  );
 }
