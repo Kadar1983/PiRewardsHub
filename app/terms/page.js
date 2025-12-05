@@ -1,8 +1,3 @@
 export default function Terms() {
-  return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">الشروط والأحكام</h1>
-      <p>هنا نص الشروط والأحكام...</p>
-    </div>
-  );
+  return <div><h1 className="text-xl font-bold mb-2">Terms</h1><p>By using this app you agree to the terms.</p></div>;
 }
