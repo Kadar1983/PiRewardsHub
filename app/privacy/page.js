@@ -1,13 +1,8 @@
-import Navbar from '../../components/Navbar';
-
-export default function Privacy() {
+export default function PrivacyPage() {
   return (
     <div>
-      <Navbar />
-      <div className="min-h-screen p-4">
-        <h1 className="text-xl font-bold mb-2">سياسة الخصوصية</h1>
-        <p>نحن لا نقوم بتخزين أي بيانات شخصية.</p>
-      </div>
+      <h1 className="text-2xl font-bold mb-4">سياسة الخصوصية</h1>
+      <p>هنا تضع نص سياسة الخصوصية الخاصة بتطبيقك.</p>
     </div>
   );
 }
