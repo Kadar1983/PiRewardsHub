@@ -1,4 +1,5 @@
 import Link from 'next/link';
+
 export default function Navbar() {
   return (
     <nav className="bg-gray-800 p-4 flex justify-between items-center">
@@ -11,4 +12,5 @@ export default function Navbar() {
         <Link href="/terms" className="text-gray-300 hover:text-white">Terms</Link>
       </div>
     </nav>
+  );
 }
