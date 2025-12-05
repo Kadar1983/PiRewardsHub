@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Navbar from "../components/Navbar";
 import TransactionList from "../components/TransactionList";
 
 export default function Page() {
@@ -10,22 +9,27 @@ export default function Page() {
 
   useEffect(() => {
     const stored = localStorage.getItem("user");
-    if (!stored) router.replace("/login");
-    else setLoading(false);
+    if (!stored) {
+      router.replace("/login");
+    } else {
+      setLoading(false);
+    }
   }, []);
 
-  if (loading) return <div className="flex items-center justify-center min-h-screen">جاري التحويل لتسجيل الدخول...</div>;
+  if (loading)
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        جاري التحويل لتسجيل الدخول...
+      </div>
+    );
 
   const user = JSON.parse(localStorage.getItem("user"));
 
   return (
     <div>
-      <Navbar />
-      <div className="p-6">
-        <h1 className="text-2xl font-bold mb-4">مرحبًا، {user.name}!</h1>
-        <p className="mb-4">رصيدك الحالي: {user.balance} Pi</p>
-        <TransactionList userId={user.id} />
-      </div>
+      <h1 className="text-2xl font-bold mb-4">مرحبًا، {user.name}!</h1>
+      <p className="mb-4">رصيدك الحالي: {user.balance} Pi</p>
+      <TransactionList userId={user.id} />
     </div>
   );
 }
