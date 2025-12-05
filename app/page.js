@@ -10,11 +10,8 @@ export default function Page() {
 
   useEffect(() => {
     const stored = localStorage.getItem("user");
-    if (!stored) {
-      router.replace("/login"); // إعادة التوجيه إذا لم يسجل الدخول
-    } else {
-      setLoading(false);
-    }
+    if (!stored) router.replace("/login");
+    else setLoading(false);
   }, []);
 
   if (loading) return <div className="flex items-center justify-center min-h-screen">جاري التحويل لتسجيل الدخول...</div>;
