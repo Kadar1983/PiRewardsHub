@@ -1,9 +1,3 @@
 export default function Privacy() {
-  return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">سياسة الخصوصية</h1>
-      <p>هنا نص سياسة الخصوصية...</p>
-    </div>
-  );
-
+  return <div><h1 className="text-xl font-bold mb-2">Privacy Policy</h1><p>We do not store personal data.</p></div>;
 }
