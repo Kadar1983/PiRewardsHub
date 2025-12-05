@@ -1,13 +1,8 @@
-import Navbar from '../../components/Navbar';
-
-export default function Terms() {
+export default function TermsPage() {
   return (
     <div>
-      <Navbar />
-      <div className="min-h-screen p-4">
-        <h1 className="text-xl font-bold mb-2">الشروط والأحكام</h1>
-        <p>باستخدام هذا التطبيق، فإنك توافق على الشروط.</p>
-      </div>
+      <h1 className="text-2xl font-bold mb-4">الشروط والأحكام</h1>
+      <p>هنا تضع نص الشروط والأحكام الخاصة بتطبيقك.</p>
     </div>
   );
 }
