@@ -1,35 +1,10 @@
-"use client";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import TransactionList from "../components/TransactionList";
-
 export default function Page() {
-  const [loading, setLoading] = useState(true);
-  const router = useRouter();
-
-  useEffect(() => {
-    const stored = localStorage.getItem("user");
-    if (!stored) {
-      router.replace("/login"); // إعادة التوجيه فورًا
-    } else {
-      setLoading(false);
-    }
-  }, []);
-
-  if (loading)
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        جاري التحويل لتسجيل الدخول...
-      </div>
-    );
-
-  const user = JSON.parse(localStorage.getItem("user"));
-
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">مرحبًا، {user.name}!</h1>
-      <p className="mb-4">رصيدك الحالي: {user.balance} Pi</p>
-      <TransactionList userId={user.id} />
-    </div>
+    <main className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+      <div className="p-8 rounded-2xl shadow-xl bg-gray-800">
+        <h1 className="text-3xl font-bold mb-4">Welcome to Pi Rewards Hub</h1>
+        <p className="text-gray-300">This is the home page. Login to continue.</p>
+      </div>
+    </main>
   );
 }
