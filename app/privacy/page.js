@@ -5,4 +5,5 @@ export default function Privacy() {
       <p>هنا نص سياسة الخصوصية...</p>
     </div>
   );
+
 }
