@@ -1,3 +1,21 @@
-import Navbar from '../components/Navbar';
-import { Card, CardContent } from '../components/ui/card';
-import { Button } from '../components/ui/button';
+{
+  "name": "pi-rewards-hub",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "14.0.0",
+    "react": "18.3.0",
+    "react-dom": "18.3.0",
+    "framer-motion": "^10.12.16"
+  },
+  "devDependencies": {
+    "eslint": "8.48.0",
+    "eslint-config-next": "14.0.0"
+  }
+}
