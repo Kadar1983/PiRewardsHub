@@ -12,4 +12,5 @@ export function Button({ children, onClick, className, variant }) {
       {children}
     </button>
   );
+
 }
