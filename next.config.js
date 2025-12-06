@@ -1,6 +1,3 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true
-};
-
-module.exports = nextConfig;
+import Navbar from '../components/Navbar';
+import { Card, CardContent } from '../components/ui/card';
+import { Button } from '../components/ui/button';
