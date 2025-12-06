@@ -12,9 +12,11 @@ export default function Page() {
   const [lastClaim, setLastClaim] = useState(null);
   const [canClaim, setCanClaim] = useState(true);
   const [countdown, setCountdown] = useState('00:00:00');
+  const [gameMessage, setGameMessage] = useState('');
   const dailyBase = 10;
   const dailyAmount = Math.min(100, dailyBase + Math.floor(streak / 3) * 5);
 
+  // Load saved data
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem('pi_rewards_daily')) || {};
     if (saved.points) setPoints(saved.points);
@@ -22,11 +24,13 @@ export default function Page() {
     if (saved.lastClaim) setLastClaim(new Date(saved.lastClaim));
   }, []);
 
+  // Save data
   useEffect(() => {
     const data = { points, streak, lastClaim: lastClaim ? lastClaim.toISOString() : null };
     localStorage.setItem('pi_rewards_daily', JSON.stringify(data));
   }, [points, streak, lastClaim]);
 
+  // Countdown
   useEffect(() => {
     const tick = () => {
       if (!lastClaim) {
@@ -53,6 +57,7 @@ export default function Page() {
     return () => clearInterval(iv);
   }, [lastClaim]);
 
+  // Daily claim
   const handleClaim = () => {
     if (!canClaim) return;
     const now = new Date();
@@ -71,69 +76,48 @@ export default function Page() {
     setLastClaim(null);
   };
 
+  // Mini-game
+  const playGame = () => {
+    const earned = Math.floor(Math.random() * 20) + 5;
+    setPoints(prev => prev + earned);
+    setGameMessage(`🎉 You earned ${earned} Pi!`);
+    setTimeout(() => setGameMessage(''), 3000);
+  };
+
   return (
     <>
       <Navbar />
       <div className="min-h-screen bg-gray-900 text-white p-4 space-y-6">
         <h1 className="text-3xl font-bold text-center">Pi Rewards Hub</h1>
 
-        {/* Wallet / Points */}
+        {/* Wallet */}
         <Card>
-          <CardContent className="p-6 space-y-2">
-            <p className="text-neutral-300">Points:</p>
-            <p className="text-2xl font-bold">{points} Pi</p>
+          <CardContent>
+            <p>Points: <strong>{points} Pi</strong></p>
           </CardContent>
         </Card>
 
         {/* Daily Rewards */}
-        <section className="space-y-4">
-          <h2 className="text-xl font-bold">Daily Rewards</h2>
-          <motion.div whileHover={{ scale: 1.02 }} className="rounded-2xl bg-neutral-800 shadow-lg">
-            <Card>
-              <CardContent className="p-6 space-y-4">
-                <p className="text-neutral-300">
-                  Claim a daily reward once every 24 hours. Maintain your streak to increase rewards.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <div className="flex-1">
-                    <p className="text-sm text-neutral-400">Streak</p>
-                    <p className="text-2xl font-bold">{streak} 🔥</p>
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm text-neutral-400">Next Claim</p>
-                    <p className="text-2xl font-bold">{countdown}</p>
-                  </div>
-                </div>
-                <div className="flex gap-3">
-                  <Button className="rounded-2xl px-4 py-2 w-full" onClick={handleClaim} disabled={!canClaim}>
-                    Claim {dailyAmount} Pi
-                  </Button>
-                  <Button className="rounded-2xl px-4 py-2 w-full" variant="secondary" onClick={resetDaily}>
-                    Reset
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </section>
+        <Card>
+          <CardContent>
+            <p>Daily Rewards</p>
+            <p>Streak: {streak} 🔥</p>
+            <p>Next Claim: {countdown}</p>
+            <div className="flex gap-2 mt-2">
+              <Button onClick={handleClaim} disabled={!canClaim}>Claim {dailyAmount} Pi</Button>
+              <Button variant="secondary" onClick={resetDaily}>Reset</Button>
+            </div>
+          </CardContent>
+        </Card>
 
-        {/* Play to Earn */}
-        <section className="space-y-4">
-          <h2 className="text-xl font-bold">Play to Earn</h2>
-          <motion.div whileHover={{ scale: 1.02 }} className="rounded-2xl bg-neutral-800 shadow-lg">
-            <Card>
-              <CardContent className="p-6 space-y-4">
-                <p className="text-neutral-300">Play mini-games and earn Pi rewards for completing tasks.</p>
-                <div className="flex gap-3">
-                  <Button className="rounded-2xl px-4 py-2 w-full">Start Game</Button>
-                  <Button className="rounded-2xl px-4 py-2 w-full" variant="secondary">
-                    Leaderboard
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </section>
+        {/* Mini-Game */}
+        <Card>
+          <CardContent>
+            <p>Play to Earn</p>
+            <Button onClick={playGame}>🎮 Play Game</Button>
+            {gameMessage && <p className="text-green-400 font-bold">{gameMessage}</p>}
+          </CardContent>
+        </Card>
       </div>
     </>
   );
