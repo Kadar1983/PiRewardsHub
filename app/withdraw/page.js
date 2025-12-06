@@ -1,30 +1,27 @@
-"use client";
-import { useState } from "react";
+'use client';
 
-export default function WithdrawPage() {
-  const [amount, setAmount] = useState("");
+import Navbar from '@/components/Navbar';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+
+export default function Withdraw() {
+  const [amount, setAmount] = useState('');
 
   const handleWithdraw = () => {
-    alert(`تم سحب ${amount} Pi!`);
-    setAmount("");
+    alert(`You requested to withdraw ${amount} Pi`);
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10">
-      <h1 className="text-2xl font-bold mb-4">سحب Pi</h1>
-      <input
-        type="number"
-        placeholder="المبلغ"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-        className="border p-2 mb-4 w-full"
-      />
-      <button
-        onClick={handleWithdraw}
-        className="bg-green-600 text-white px-4 py-2 rounded"
-      >
-        سحب
-      </button>
-    </div>
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-gray-900 text-white flex flex-col justify-center items-center p-4 space-y-6">
+        <h1 className="text-3xl font-bold">Withdraw</h1>
+        <Input placeholder="Amount" value={amount} onChange={e => setAmount(e.target.value)} />
+        <Button className="w-full rounded-2xl" onClick={handleWithdraw}>
+          Withdraw
+        </Button>
+      </div>
+    </>
   );
 }
