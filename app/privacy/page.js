@@ -1,8 +1,13 @@
-export default function PrivacyPage() {
+// privacy.js
+import Navbar from '@/components/Navbar';
+export default function Privacy() {
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">سياسة الخصوصية</h1>
-      <p>هنا تضع نص سياسة الخصوصية الخاصة بتطبيقك.</p>
-    </div>
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-gray-900 text-white p-4">
+        <h1 className="text-3xl font-bold">Privacy Policy</h1>
+        <p className="mt-4 text-neutral-300">Your privacy is important. This app does not share your data.</p>
+      </div>
+    </>
   );
 }
