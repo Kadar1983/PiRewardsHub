@@ -1,16 +1,43 @@
-import Link from "next/link";
+'use client';
+
+import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+
+  const links = [
+    { name: 'Home', href: '/' },
+    { name: 'Dashboard', href: '/dashboard' },
+    { name: 'Play to Earn', href: '/page' },
+    { name: 'Login', href: '/login' },
+    { name: 'Withdraw', href: '/withdraw' },
+    { name: 'Privacy', href: '/privacy' },
+    { name: 'Terms', href: '/terms' },
+  ];
+
   return (
-    <nav className="bg-gray-800 p-4 flex justify-between items-center">
-      <div className="text-white font-bold">Pi Rewards Hub</div>
-      <div className="space-x-4">
-        <Link href="/">Dashboard</Link>
-        <Link href="/login">Login</Link>
-        <Link href="/withdraw">Withdraw</Link>
-        <Link href="/privacy">Privacy</Link>
-        <Link href="/terms">Terms</Link>
+    <nav className="bg-gray-800 text-white px-4 py-3 flex justify-between items-center relative">
+      <div className="font-bold text-xl">Pi Rewards Hub</div>
+      <div className="hidden md:flex space-x-4">
+        {links.map((link) => (
+          <Link key={link.href} href={link.href} className="hover:text-yellow-400">
+            {link.name}
+          </Link>
+        ))}
       </div>
+      <button className="md:hidden" onClick={() => setOpen(!open)}>
+        {open ? '✖' : '☰'}
+      </button>
+      {open && (
+        <div className="absolute top-16 left-0 w-full bg-gray-800 flex flex-col space-y-2 p-4 md:hidden">
+          {links.map((link) => (
+            <Link key={link.href} href={link.href} className="hover:text-yellow-400">
+              {link.name}
+            </Link>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }
