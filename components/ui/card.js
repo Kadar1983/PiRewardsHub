@@ -14,5 +14,4 @@ export function CardContent({ children, className }) {
       {children}
     </div>
   );
-
 }
