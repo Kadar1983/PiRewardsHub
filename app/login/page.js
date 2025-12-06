@@ -1,33 +1,29 @@
-"use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+use client';
 
-export default function LoginPage() {
-  const [name, setName] = useState("");
-  const router = useRouter();
+import Navbar from '@/components/Navbar';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+
+export default function Login() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    const user = { id: Date.now(), name, balance: 100 };
-    localStorage.setItem("user", JSON.stringify(user));
-    router.push("/");
+    alert(`Welcome, ${username}!`);
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10">
-      <h1 className="text-2xl font-bold mb-4">تسجيل الدخول</h1>
-      <input
-        type="text"
-        placeholder="اسم المستخدم"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        className="border p-2 mb-4 w-full"
-      />
-      <button
-        onClick={handleLogin}
-        className="bg-blue-600 text-white px-4 py-2 rounded"
-      >
-        دخول
-      </button>
-    </div>
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-gray-900 text-white flex flex-col justify-center items-center p-4 space-y-6">
+        <h1 className="text-3xl font-bold">Login</h1>
+        <Input placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
+        <Input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
+        <Button className="w-full rounded-2xl" onClick={handleLogin}>
+          Login
+        </Button>
+      </div>
+    </>
   );
 }
