@@ -9,7 +9,6 @@ export default function Navbar() {
   const links = [
     { name: 'Home', href: '/' },
     { name: 'Dashboard', href: '/dashboard' },
-    { name: 'Play to Earn', href: '/page' },
     { name: 'Login', href: '/login' },
     { name: 'Withdraw', href: '/withdraw' },
     { name: 'Privacy', href: '/privacy' },
