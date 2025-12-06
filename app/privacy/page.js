@@ -1,4 +1,3 @@
-// privacy.js
 import Navbar from '@/components/Navbar';
 export default function Privacy() {
   return (
@@ -11,3 +10,4 @@ export default function Privacy() {
     </>
   );
 }
+
